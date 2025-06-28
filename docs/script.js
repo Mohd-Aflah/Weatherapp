@@ -1,4 +1,4 @@
-const BACKEND_URL = "https://your-backend-url.onrender.com"; // Replace with your actual Render backend URL
+const BACKEND_URL = " https://weatherapp-jh3a.onrender.com"; // Replace with your actual Render backend URL
 
 async function fetchWeather() {
   const city = document.getElementById('cityInput').value.trim();
