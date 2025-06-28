@@ -3,7 +3,11 @@ async function fetchForecast() {
   const display = document.getElementById('weatherDisplay');
   const chartCanvas = document.getElementById('forecastChart');
   display.innerHTML = "🔄 Loading 5-day forecast...";
+  const BACKEND_URL = "https://weatherapp-jh3a.onrender.com";
 
+
+
+ 
   try {
     const res = await fetch(`${BACKEND_URL}/api/forecast?city=${city}`);
     const data = await res.json();
