@@ -1,6 +1,7 @@
 async function fetchForecast() {
   const city = document.getElementById('cityInput').value.trim();
   const display = document.getElementById('weatherDisplay');
+  const chartCanvas = document.getElementById('forecastChart');
   display.innerHTML = "🔄 Loading 5-day forecast...";
 
   try {
@@ -12,31 +13,53 @@ async function fetchForecast() {
       return;
     }
 
-    // Group by date, and take one reading per day (e.g., 12:00)
-    const dailyData = {};
+    const labels = [];
+    const temps = [];
+
+    // Pick forecast at 12:00:00 each day
     data.list.forEach(entry => {
-      const date = entry.dt_txt.split(" ")[0];
-      const time = entry.dt_txt.split(" ")[1];
-      if (time === "12:00:00") dailyData[date] = entry;
+      const [date, time] = entry.dt_txt.split(" ");
+      if (time === "12:00:00") {
+        labels.push(date);
+        temps.push(entry.main.temp);
+      }
     });
 
-    let html = `<h2>📅 5-Day Forecast for ${data.city.name}, ${data.city.country}</h2>`;
-    for (const [date, entry] of Object.entries(dailyData)) {
-      html += `
-        <div style="margin-bottom: 1rem; border: 1px solid #ccc; padding: 1rem; border-radius: 8px;">
-          <strong>${date}</strong><br/>
-          <img src="https://openweathermap.org/img/wn/${entry.weather[0].icon}@2x.png" /><br/>
-          ${entry.weather[0].description}<br/>
-          🌡 Temp: ${entry.main.temp} °C<br/>
-          💧 Humidity: ${entry.main.humidity}%<br/>
-          💨 Wind: ${entry.wind.speed} m/s
-        </div>
-      `;
-    }
+    display.innerHTML = `<h2>📊 5-Day Temperature Forecast for ${data.city.name}, ${data.city.country}</h2>`;
 
-    display.innerHTML = html;
+    // Destroy old chart instance if it exists
+    if (window.forecastChart) window.forecastChart.destroy();
+
+    window.forecastChart = new Chart(chartCanvas, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Temperature (°C)',
+          data: temps,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      }
+    });
 
   } catch (err) {
+    console.error(err);
     display.innerHTML = `<p style="color:red;">⚠️ Failed to load forecast</p>`;
   }
 }
