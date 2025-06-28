@@ -35,9 +35,10 @@ async function fetchWeather() {
     display.innerHTML = `
       <div class="weather-card">
         <h2>${data.name}, ${data.sys.country}</h2>
+         <h3>🌡 Temperature: ${data.main.temp} °C</h3>
         <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="icon" />
         <p>${data.weather[0].description}</p>
-        <p>🌡 Temperature: ${data.main.temp} °C</p>
+       
         <p>💧 Humidity: ${data.main.humidity}%</p>
         <p>💨 Wind Speed: ${data.wind.speed} m/s</p>
       </div>
