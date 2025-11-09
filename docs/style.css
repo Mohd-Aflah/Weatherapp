@@ -1,18 +1,49 @@
-/* Reset */
+/**
+ * Weather Dashboard - Stylesheet
+ * 
+ * Comprehensive styling for the Weather Dashboard application including
+ * responsive design, animations, and modern UI elements.
+ * 
+ * @author Mohammed Aflah
+ * @author Ayra Riyaz
+ * @version 1.0.0
+ * @year 2025
+ * @license MIT
+ * 
+ * Features:
+ * - Responsive grid layouts
+ * - Smooth animations and transitions
+ * - Gradient backgrounds
+ * - Mobile-first design
+ * - Interactive hover effects
+ * 
+ * Copyright (c) 2025 Mohammed Aflah and Ayra Riyaz
+ */
+
+/* ==========================================================================
+   Global Reset and Base Styles
+   ========================================================================== */
+
+/**
+ * Reset default browser styles for consistent rendering
+ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Body with background image and overlay */
+/**
+ * Body styling with background image and gradient overlay
+ * Creates an immersive weather-themed interface
+ */
 body {
   font-family: Arial, sans-serif;
   background: linear-gradient(
       rgba(0, 0, 0, 0.4),
       rgba(0, 0, 0, 0.4)
     ),
-    url('images/image.png'); /* ← Local image path */
+    url('images/image.png'); /* Local background image */
   background-size: cover;
   background-position: center;
   padding: 1rem;
@@ -20,8 +51,10 @@ body {
   animation: fadeInBody 1s ease-in-out;
 }
 
-
-/* Fade-in for body */
+/**
+ * Fade-in animation for body element
+ * Provides smooth initial page load experience
+ */
 @keyframes fadeInBody {
   from {
     opacity: 0;
@@ -31,7 +64,14 @@ body {
   }
 }
 
-/* Container styling */
+/* ==========================================================================
+   Container Styles
+   ========================================================================== */
+
+/**
+ * Main container for the weather dashboard
+ * Features sky-blue gradient to match weather theme
+ */
 .container {
   max-width: 500px;
   margin: 2rem auto;
@@ -43,7 +83,9 @@ body {
   animation: fadeInContainer 0.8s ease-in-out;
 }
 
-/* Container fade-in */
+/**
+ * Container fade-in animation with slide-up effect
+ */
 @keyframes fadeInContainer {
   from {
     transform: translateY(20px);
@@ -55,18 +97,30 @@ body {
   }
 }
 
+/**
+ * Main heading style
+ */
 h1 {
   margin-bottom: 1rem;
   color: #333;
 }
 
-/* Search bar */
+/* ==========================================================================
+   Search Bar Styles
+   ========================================================================== */
+
+/**
+ * Search bar container with flexbox layout
+ */
 .search-bar {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
 }
 
+/**
+ * Search input field styling
+ */
 .search-bar input {
   padding: 0.5rem;
   width: 70%;
@@ -75,6 +129,10 @@ h1 {
   font-size: 1rem;
 }
 
+/**
+ * Search button with hover effects
+ * Green color scheme for positive action
+ */
 .search-bar button {
   background: #04c65c;
   border: none;
@@ -86,16 +144,29 @@ h1 {
   transition: background 0.3s ease, transform 0.2s;
 }
 
+/**
+ * Search button hover state
+ * Includes scale transformation for interactive feedback
+ */
 .search-bar button:hover {
   background: #03a74e;
   transform: scale(1.05);
 }
 
-/* Tabs */
+/* ==========================================================================
+   Tab Navigation Styles
+   ========================================================================== */
+
+/**
+ * Tab container for switching between views
+ */
 .tabs {
   margin-bottom: 1rem;
 }
 
+/**
+ * Individual tab button styling
+ */
 .tabs button {
   padding: 0.5rem 1rem;
   border: none;
@@ -107,12 +178,23 @@ h1 {
   transition: background 0.3s;
 }
 
+/**
+ * Active tab styling
+ * Uses green accent color to match search button
+ */
 .tabs .active {
   background: #04c65c;
   color: white;
 }
 
-/* Weather and forecast cards */
+/* ==========================================================================
+   Weather Card Styles
+   ========================================================================== */
+
+/**
+ * Base card styling for weather displays
+ * Includes fade-in animation on render
+ */
 .weather-card,
 .forecast-card,
 .placeholder-card {
@@ -124,6 +206,10 @@ h1 {
   animation: fadeInCard 0.6s ease forwards;
 }
 
+/**
+ * Card fade-in animation with scale effect
+ * Creates smooth appearance of weather data
+ */
 @keyframes fadeInCard {
   from {
     opacity: 0;
@@ -135,18 +221,31 @@ h1 {
   }
 }
 
+/**
+ * Weather card heading styles
+ */
 .weather-card h2 {
   margin-bottom: 0.5rem;
   color: #222;
 }
 
+/**
+ * Weather card paragraph text
+ */
 .weather-card p {
   margin: 0.3rem 0;
   font-size: 1rem;
   color: #444;
 }
 
-/* Forecast cards layout */
+/* ==========================================================================
+   Forecast Styles
+   ========================================================================== */
+
+/**
+ * Forecast grid layout
+ * Responsive grid that adapts to screen size
+ */
 .forecast-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -154,6 +253,10 @@ h1 {
   margin-top: 1rem;
 }
 
+/**
+ * Individual forecast card with hover effects
+ * Light green background to differentiate from current weather
+ */
 .forecast-card {
   background: #e9f7ef;
   padding: 0.75rem;
@@ -163,35 +266,64 @@ h1 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/**
+ * Forecast card hover effect
+ * Lifts card and adds shadow for depth
+ */
 .forecast-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/**
+ * Forecast card date heading
+ */
 .forecast-card h4 {
   margin-bottom: 0.3rem;
   font-size: 0.95rem;
   color: #333;
 }
 
+/**
+ * Weather icon sizing in forecast cards
+ */
 .forecast-card img {
   width: 50px;
   height: 50px;
 }
 
-/* Placeholder card */
+/* ==========================================================================
+   Placeholder Card Styles
+   ========================================================================== */
+
+/**
+ * Placeholder card for loading and error states
+ */
 .placeholder-card {
   font-size: 1rem;
   color: #777;
   background: #f2f2f2;
 }
 
-/* Responsive tweaks */
+/* ==========================================================================
+   Responsive Design - Mobile Styles
+   ========================================================================== */
+
+/**
+ * Mobile-specific styles for screens under 500px
+ * Adjusts layout for vertical stacking on small devices
+ */
 @media (max-width: 500px) {
+  /**
+   * Stack search bar elements vertically on mobile
+   */
   .search-bar {
     flex-direction: column;
   }
 
+  /**
+   * Full width input and button on mobile
+   */
   .search-bar input,
   .search-bar button {
     width: 100%;
@@ -199,10 +331,16 @@ h1 {
     margin: 4px 0;
   }
 
+  /**
+   * Vertical tab layout for mobile
+   */
   .tabs {
     flex-direction: column;
   }
 
+  /**
+   * Stacked tab buttons on mobile
+   */
   .tabs button {
     margin: 4px 0;
   }
